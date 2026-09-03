@@ -1,0 +1,19 @@
+header:
+  version: 14
+repos:
+  bitbake:
+    branch: '2.18'
+    commit: 22021758e66737bcf68dfd2b74adc6a0cb1d42d9
+    url: https://github.com/openembedded/bitbake
+  meta-qcom:
+    branch: wrynose
+    commit: ef0004df267743cc89d6a09bc724bc99ff541c01
+    url: https://github.com/qualcomm-linux/meta-qcom
+  oe-core:
+    branch: wrynose
+    commit: 06dd66e6220e5ce4ed4b9af4d8231ae5f0a8ce80
+    url: https://github.com/openembedded/openembedded-core
+  meta-lts-mixins:
+    branch: wrynose/linux-firmware
+    commit: 348a9eaaf3991e2329d0cef14dce23fabaef9191
+    url: https://git.yoctoproject.org/meta-lts-mixins

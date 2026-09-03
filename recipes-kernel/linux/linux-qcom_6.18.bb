@@ -30,6 +30,8 @@ SRC_URI = " \
 # Additional kernel configs.
 SRC_URI += " \
     file://configs/bsp-additions.cfg \
+    file://configs/hwlat.cfg \
+    file://configs/osnoise.cfg \
 "
 
 # To build tip of qcom-6.18.y branch set preferred
