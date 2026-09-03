@@ -1,0 +1,15 @@
+[Unit]
+Description=Synchronize CLOCK_REALTIME from PTP hardware clock
+Requires=ptp4l-end0.service
+After=network-online.target systemd-timesyncd.service ptp4l-end0.service
+Wants=network-online.target
+Conflicts=systemd-timesyncd.service
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/phc2sys -s /dev/ptp0 -c CLOCK_REALTIME -w
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

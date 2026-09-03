@@ -1,0 +1,15 @@
+[Unit]
+Description=PTP slave on end0
+Wants=network-online.target
+After=network-online.target systemd-timesyncd.service
+Before=phc2sys-end0.service
+Conflicts=systemd-timesyncd.service
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/ptp4l -f /etc/linuxptp/ptp4l-end0.conf -i end0 -2 -P -s
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target
