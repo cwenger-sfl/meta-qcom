@@ -4,3 +4,4 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/linux-qcom-6.18:"
 
 KBUILD_CONFIG_EXTRA:append:aarch64 = " ${S}/arch/arm64/configs/rt.config"
 SRC_URI += "file://0002-arm64-dts-qcom-lemans-Fix-the-PCIe-iommu-map-entries.patch"
+SRC_URI += "file://0003-arm64-dts-qcom-lemans-map-pcie1-switch-rids.patch"

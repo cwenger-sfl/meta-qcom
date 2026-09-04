@@ -1,0 +1,41 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: OpenCode <opencode@localhost>
+Date: Fri, 4 Sep 2026 18:00:00 +0000
+Subject: [PATCH] arm64: dts: qcom: lemans-evk: map PCIe1 switch RIDs
+
+The PCIe1 Ethernet controllers are behind a QPS615 switch.  Add the
+explicit requester-ID to SMMU SID mappings required for devices behind
+the switch.  The SID numbering follows the existing Lemans and Monaco
+switch topology mappings, with PCIe1's existing SID base at 0x80.
+
+Signed-off-by: OpenCode <opencode@localhost>
+---
+ .../boot/dts/qcom/lemans-evk-staging.dtso          | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/lemans-evk-staging.dtso b/arch/arm64/boot/dts/qcom/lemans-evk-staging.dtso
+index 000000000000..111111111111 100644
+--- a/arch/arm64/boot/dts/qcom/lemans-evk-staging.dtso
++++ b/arch/arm64/boot/dts/qcom/lemans-evk-staging.dtso
+@@ -8,6 +8,19 @@
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/interrupt-controller/irq.h>
+ 
++&pcie1 {
++	/* Map the PCIe1 QPS615 switch topology to the PCIe SMMU. */
++	iommu-map = <0x0   &pcie_smmu 0x80 0x0 0x1>,
++		    <0x100 &pcie_smmu 0x81 0x0 0x1>,
++		    <0x208 &pcie_smmu 0x82 0x0 0x1>,
++		    <0x210 &pcie_smmu 0x83 0x0 0x1>,
++		    <0x218 &pcie_smmu 0x84 0x0 0x1>,
++		    <0x300 &pcie_smmu 0x85 0x0 0x1>,
++		    <0x400 &pcie_smmu 0x86 0x0 0x1>,
++		    <0x500 &pcie_smmu 0x87 0x0 0x1>,
++		    <0x501 &pcie_smmu 0x88 0x0 0x1>;
++};
++
+ &i2c18 {
+ 	eeprom@52 {
+ 		nvmem-layout {
+-- 
+2.43.0
