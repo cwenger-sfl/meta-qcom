@@ -1,0 +1,44 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: OpenCode <opencode@localhost>
+Date: Fri, 4 Sep 2026 19:30:00 +0000
+Subject: [PATCH] arm64: dts: qcom: lemans-evk: map PCIe1 switch RIDs in base DT
+
+The default FIT configuration for the IQ-9075 EVK loads lemans-evk.dtb
+without the staging overlay.  The PCIe1 QPS615 switch therefore needs its
+complete requester-ID to SMMU SID map in the base board DT.
+
+The live board has switch ports at RIDs 0x208 through 0x238 and Intel
+Ethernet endpoints at 0x400 and 0x500.  Use the established sequential
+switch mapping with PCIe1's SID base at 0x80.
+
+Upstream-Status: Pending
+
+Signed-off-by: OpenCode <opencode@localhost>
+---
+ arch/arm64/boot/dts/qcom/lemans-evk.dts | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/lemans-evk.dts b/arch/arm64/boot/dts/qcom/lemans-evk.dts
+index 000000000000..111111111111 100644
+--- a/arch/arm64/boot/dts/qcom/lemans-evk.dts
++++ b/arch/arm64/boot/dts/qcom/lemans-evk.dts
+@@ -850,6 +850,17 @@
+ &pcie1 {
+ 	perst-gpios = <&tlmm 4 GPIO_ACTIVE_LOW>;
+ 	wake-gpios = <&tlmm 5 GPIO_ACTIVE_HIGH>;
++	iommu-map = <0x0   &pcie_smmu 0x80 0x0 0x1>,
++		    <0x100 &pcie_smmu 0x81 0x0 0x1>,
++		    <0x208 &pcie_smmu 0x82 0x0 0x1>,
++		    <0x210 &pcie_smmu 0x83 0x0 0x1>,
++		    <0x218 &pcie_smmu 0x84 0x0 0x1>,
++		    <0x220 &pcie_smmu 0x85 0x0 0x1>,
++		    <0x228 &pcie_smmu 0x86 0x0 0x1>,
++		    <0x230 &pcie_smmu 0x87 0x0 0x1>,
++		    <0x238 &pcie_smmu 0x88 0x0 0x1>,
++		    <0x400 &pcie_smmu 0x89 0x0 0x1>,
++		    <0x500 &pcie_smmu 0x8a 0x0 0x1>;
+ 
+ 	pinctrl-0 = <&pcie1_default_state>;
+ 	pinctrl-names = "default";
+-- 
+2.43.0

@@ -12,14 +12,14 @@ Upstream-Status: Pending
 
 Signed-off-by: OpenCode <opencode@localhost>
 ---
- .../boot/dts/qcom/lemans-evk-staging.dtso          | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ .../boot/dts/qcom/lemans-evk-staging.dtso          | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/lemans-evk-staging.dtso b/arch/arm64/boot/dts/qcom/lemans-evk-staging.dtso
 index 000000000000..111111111111 100644
 --- a/arch/arm64/boot/dts/qcom/lemans-evk-staging.dtso
 +++ b/arch/arm64/boot/dts/qcom/lemans-evk-staging.dtso
-@@ -8,6 +8,19 @@
+@@ -8,6 +8,21 @@
  #include <dt-bindings/gpio/gpio.h>
  #include <dt-bindings/interrupt-controller/irq.h>
  
@@ -30,10 +30,12 @@ index 000000000000..111111111111 100644
 +		    <0x208 &pcie_smmu 0x82 0x0 0x1>,
 +		    <0x210 &pcie_smmu 0x83 0x0 0x1>,
 +		    <0x218 &pcie_smmu 0x84 0x0 0x1>,
-+		    <0x300 &pcie_smmu 0x85 0x0 0x1>,
-+		    <0x400 &pcie_smmu 0x86 0x0 0x1>,
-+		    <0x500 &pcie_smmu 0x87 0x0 0x1>,
-+		    <0x501 &pcie_smmu 0x88 0x0 0x1>;
++		    <0x220 &pcie_smmu 0x85 0x0 0x1>,
++		    <0x228 &pcie_smmu 0x86 0x0 0x1>,
++		    <0x230 &pcie_smmu 0x87 0x0 0x1>,
++		    <0x238 &pcie_smmu 0x88 0x0 0x1>,
++		    <0x400 &pcie_smmu 0x89 0x0 0x1>,
++		    <0x500 &pcie_smmu 0x8a 0x0 0x1>;
 +};
 +
  &i2c18 {
