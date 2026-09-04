@@ -8,6 +8,8 @@ explicit requester-ID to SMMU SID mappings required for devices behind
 the switch.  The SID numbering follows the existing Lemans and Monaco
 switch topology mappings, with PCIe1's existing SID base at 0x80.
 
+Upstream-Status: Pending
+
 Signed-off-by: OpenCode <opencode@localhost>
 ---
  .../boot/dts/qcom/lemans-evk-staging.dtso          | 13 +++++++++++++
