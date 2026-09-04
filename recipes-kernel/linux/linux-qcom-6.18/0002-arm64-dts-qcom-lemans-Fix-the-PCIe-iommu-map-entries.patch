@@ -1,0 +1,41 @@
+From 19b4c47fc9733a953e9586bc0906a3be378b4cd5 Mon Sep 17 00:00:00 2001
+From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+Date: Thu, 30 Jul 2026 13:55:55 +0200
+Subject: [PATCH] arm64: dts: qcom: lemans: Fix PCIe iommu-map entries
+
+The pcie_smmu provider has two IOMMU cells. Add the missing SID mask
+cell to the Lemans PCIe iommu-map entries.
+
+Upstream-Status: Backport [19b4c47fc9733a953e9586bc0906a3be378b4cd5]
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+Signed-off-by: Bjorn Andersson <andersson@kernel.org>
+---
+ arch/arm64/boot/dts/qcom/lemans.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+--- a/arch/arm64/boot/dts/qcom/lemans.dtsi
++++ b/arch/arm64/boot/dts/qcom/lemans.dtsi
+@@ -8979,8 +8979,8 @@
+ 				<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_PCIE_0 0>;
+ 		interconnect-names = "pcie-mem", "cpu-pcie";
+ 
+-		iommu-map = <0x0 &pcie_smmu 0x0000 0x1>,
+-			    <0x100 &pcie_smmu 0x0001 0x1>;
++		iommu-map = <0x0 &pcie_smmu 0x0000 0x0 0x1>,
++			    <0x100 &pcie_smmu 0x0001 0x0 0x1>;
+ 
+ 		resets = <&gcc GCC_PCIE_0_BCR>,
+ 			 <&gcc GCC_PCIE_0_LINK_DOWN_BCR>;
+@@ -9152,8 +9152,8 @@
+ 				<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_PCIE_1 0>;
+ 		interconnect-names = "pcie-mem", "cpu-pcie";
+ 
+-		iommu-map = <0x0 &pcie_smmu 0x0080 0x1>,
+-			    <0x100 &pcie_smmu 0x0081 0x1>;
++		iommu-map = <0x0 &pcie_smmu 0x0080 0x0 0x1>,
++			    <0x100 &pcie_smmu 0x0081 0x0 0x1>;
+ 
+ 		resets = <&gcc GCC_PCIE_1_BCR>,
+ 			 <&gcc GCC_PCIE_1_LINK_DOWN_BCR>;
+-- 
+2.45.2
