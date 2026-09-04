@@ -4,7 +4,6 @@ DESCRIPTION = "Runtime dependencies for svtrace tracing and packet capture"
 inherit packagegroup
 
 RDEPENDS:${PN} = " \
-    bpftrace \
     tshark \
     python3-pip \
     python3-setuptools \
